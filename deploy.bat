@@ -1,1 +1,1 @@
-copy /Y "C:\Users\Michel\Desktop\Dev\AndrosScavengeHunt\target\AndrosScavengeHunt-1.0-SNAPSHOT.jar" "C:\Users\Michel\Desktop\Minecraft Server\EscapeUnderground\plugins\AndrosScavengeHunt-1.0-SNAPSHOT.jar"
+copy /Y "C:\Users\Michel\Desktop\Development\ScavengeHunt\target\scavengehunt-1.0-SNAPSHOT.jar" "C:\Users\Michel\Desktop\Minecraft Server\EscapeUnderground\plugins\scavengehunt-1.0-SNAPSHOT.jar"

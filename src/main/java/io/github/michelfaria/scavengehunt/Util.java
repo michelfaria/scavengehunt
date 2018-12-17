@@ -1,4 +1,4 @@
-package andro;
+package io.github.michelfaria.scavengehunt;
 
 import org.bukkit.configuration.ConfigurationSection;
 

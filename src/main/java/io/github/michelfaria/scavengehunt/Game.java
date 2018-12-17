@@ -1,4 +1,4 @@
-package andro;
+package io.github.michelfaria.scavengehunt;
 
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -6,7 +6,6 @@ import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -15,14 +14,12 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scoreboard.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static andro.ScavengeHunt.*;
+import static io.github.michelfaria.scavengehunt.ScavengeHunt.*;
 
 public class Game implements Listener {
     private final ScavengeHunt plugin;

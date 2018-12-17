@@ -1,4 +1,4 @@
-package andro;
+package io.github.michelfaria.scavengehunt;
 
 public class ScavengeException extends RuntimeException {
     public ScavengeException() {

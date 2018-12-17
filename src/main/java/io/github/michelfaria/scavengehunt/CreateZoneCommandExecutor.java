@@ -1,11 +1,9 @@
-package andro;
+package io.github.michelfaria.scavengehunt;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
-
-import static andro.ScavengeHunt.*;
 
 public class CreateZoneCommandExecutor implements CommandExecutor {
 
@@ -43,22 +41,22 @@ public class CreateZoneCommandExecutor implements CommandExecutor {
     }
 
     private void createZone(float x1, float y1, float z1, float x2, float y2, float z2, float ox, float oy, float oz, String newZoneName, String worldName) {
-        final ConfigurationSection zonesSection = Util.getSubsection(plugin.getConfig(), DATA_KEY_ZONES);
+        final ConfigurationSection zonesSection = Util.getSubsection(plugin.getConfig(), ScavengeHunt.DATA_KEY_ZONES);
         if (zonesSection.contains(newZoneName)) {
             throw new ScavengeException("Zone " + newZoneName + "already exists!");
         }
 
         final ConfigurationSection zoneSection = Util.getSubsection(zonesSection, newZoneName);
-        zoneSection.set(DATA_KEY_X1, x1);
-        zoneSection.set(DATA_KEY_Y1, y1);
-        zoneSection.set(DATA_KEY_Z1, z1);
-        zoneSection.set(DATA_KEY_X2, x2);
-        zoneSection.set(DATA_KEY_Y2, y2);
-        zoneSection.set(DATA_KEY_Z2, z2);
-        zoneSection.set(DATA_KEY_OX, ox);
-        zoneSection.set(DATA_KEY_OY, oy);
-        zoneSection.set(DATA_KEY_OZ, oz);
-        zoneSection.set(DATA_KEY_WORLD, worldName);
+        zoneSection.set(ScavengeHunt.DATA_KEY_X1, x1);
+        zoneSection.set(ScavengeHunt.DATA_KEY_Y1, y1);
+        zoneSection.set(ScavengeHunt.DATA_KEY_Z1, z1);
+        zoneSection.set(ScavengeHunt.DATA_KEY_X2, x2);
+        zoneSection.set(ScavengeHunt.DATA_KEY_Y2, y2);
+        zoneSection.set(ScavengeHunt.DATA_KEY_Z2, z2);
+        zoneSection.set(ScavengeHunt.DATA_KEY_OX, ox);
+        zoneSection.set(ScavengeHunt.DATA_KEY_OY, oy);
+        zoneSection.set(ScavengeHunt.DATA_KEY_OZ, oz);
+        zoneSection.set(ScavengeHunt.DATA_KEY_WORLD, worldName);
         plugin.saveConfig();
     }
 }

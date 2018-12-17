@@ -1,4 +1,4 @@
-package andro;
+package io.github.michelfaria.scavengehunt;
 
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -29,7 +29,7 @@ public class ScavengeHunt extends JavaPlugin {
     @Override
     public void onEnable() {
         super.onEnable();
-        getLogger().info("Andro's Scavenge Hunt plugin loaded!");
+        getLogger().info("Scavenge Hunt plugin loaded!");
         getCommand("createzone").setExecutor(new CreateZoneCommandExecutor(this));
         getCommand("warp").setExecutor(new WarpCommandExecutor(this));
         getCommand("zones").setExecutor(new ListZonesCommandExecutor(this));

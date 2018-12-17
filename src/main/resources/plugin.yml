@@ -1,5 +1,5 @@
-name: AndrosScavengeHunt
-main: andro.ScavengeHunt
+name: ScavengeHunt
+main: io.github.michelfaria.scavengehunt.ScavengeHunt
 version: 1.0
 api-version: 1.13
 commands:
