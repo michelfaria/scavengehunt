@@ -21,7 +21,6 @@ public class ScavengeHunt extends JavaPlugin {
     public static final String DATA_KEY_OZ = "oz";
     public static final String DATA_KEY_BLOCK = "egg-material";
     public static final String DATA_FILE_PATH = "scavenge.yml";
-    public static final String EGGS_COLLECTED_METADATA = "eggsCollected";
 
     private Game game;
     public List<Zone> zones;

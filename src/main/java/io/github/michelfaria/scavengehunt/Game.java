@@ -6,18 +6,19 @@ import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scoreboard.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static io.github.michelfaria.scavengehunt.ScavengeHunt.*;
 
@@ -32,6 +33,8 @@ public class Game implements Listener {
     private BossBar bossBar;
     private Integer updateTaskID;
     private Objective objective;
+
+    private final Map<UUID, Set<Block>> playerCollectedEggs = new HashMap<>();
 
     public Game(ScavengeHunt plugin) {
         this.plugin = plugin;
@@ -117,6 +120,7 @@ public class Game implements Listener {
         HandlerList.unregisterAll(this);
         destroyBossBar();
         destroyObjective();
+        playerCollectedEggs.clear();
         plugin.zones = null;
 
         plugin.getServer().broadcastMessage(ChatColor.AQUA.toString() + "The scavenge hunt has ended!");
@@ -224,20 +228,34 @@ public class Game implements Listener {
                         }
                     }
                 }
+                final Player player = event.getPlayer();
                 if (zone == null) {
-                    event.getPlayer().sendMessage("Weird, this egg doesn't seem to belong to any zone! Just pretend it was never here, will you?");
-                    block.breakNaturally();
-                    return;
+                    player.sendMessage("Weird, this egg doesn't seem to belong to any zone! Just pretend it was never here, will you?");
+                } else {
+                    playerFindEgg(zone, player, block);
                 }
-
-                // found egg
-                zone.addFound(block);
-                plugin.getServer().broadcastMessage(ChatColor.LIGHT_PURPLE + event.getPlayer().getName() + " found an egg at " + zone.getName() + "!");
-                block.breakNaturally();
-                playEggFoundSound();
-                final Score score = objective.getScore(event.getPlayer().getName());
-                score.setScore(score.getScore() + 1);
             }
+        }
+    }
+
+    private void playerFindEgg(Zone zone, Player player, Block egg) {
+        final UUID playerUUID = player.getUniqueId();
+
+        // get player's eggs
+        final Set<Block> playerFoundEggs;
+        if (playerCollectedEggs.get(playerUUID) == null) {
+            playerFoundEggs = new HashSet<>();
+            playerCollectedEggs.put(playerUUID, playerFoundEggs);
+        } else {
+            playerFoundEggs = playerCollectedEggs.get(playerUUID);
+        }
+
+        if (!playerFoundEggs.contains(egg)) {
+            plugin.getServer().broadcastMessage(ChatColor.LIGHT_PURPLE + player.getName() + " found an egg at " + zone.getName() + "!");
+            playerFoundEggs.add(egg);
+            playEggFoundSound();
+            final Score score = objective.getScore(player.getName());
+            score.setScore(score.getScore() + 1);
         }
     }
 

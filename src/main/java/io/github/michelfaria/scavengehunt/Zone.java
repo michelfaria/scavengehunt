@@ -14,7 +14,6 @@ public class Zone {
     private int x2;
     private int y2;
     private int z2;
-    private List<Block> collected = new ArrayList<>();
 
     public Zone(String name, List<Block> eggs, int x1, int y1, int z1, int x2, int y2, int z2) {
         this.name = name;
@@ -42,16 +41,7 @@ public class Zone {
                 ", x2=" + x2 +
                 ", y2=" + y2 +
                 ", z2=" + z2 +
-                ", collected=" + collected +
                 '}';
-    }
-
-    public void addFound(Block egg) {
-        if (!eggs.contains(egg)) {
-            throw new IllegalArgumentException("Egg not present in list of eggs");
-        }
-        eggs.remove(egg);
-        collected.add(egg);
     }
 
     public String getName() {

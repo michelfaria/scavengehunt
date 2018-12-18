@@ -20,7 +20,7 @@ public class ListZonesCommandExecutor implements CommandExecutor {
         } else {
             commandSender.sendMessage(ChatColor.YELLOW + "Zones:");
             for (Zone zone : plugin.zones) {
-                commandSender.sendMessage("-> " + zone.getName() + ChatColor.YELLOW + " [Eggs left: " + ChatColor.LIGHT_PURPLE + zone.getEggs().size() + ChatColor.YELLOW + "]");
+                commandSender.sendMessage("-> " + zone.getName() + ChatColor.YELLOW + " [" + ChatColor.LIGHT_PURPLE + zone.getEggs().size() + ChatColor.YELLOW + "]");
             }
         }
         return true;
